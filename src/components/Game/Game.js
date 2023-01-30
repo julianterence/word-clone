@@ -14,14 +14,19 @@ console.info({ answer });
 function Game() {
   const [userGuesses, setUserGuesses] = useState([])
 
+  const NUM_OF_GUESSES = userGuesses.length
+
   function addToGuesses(guess) {
-    const nextGuesses = [...userGuesses, { guess: guess.toUpperCase(), id: Math.random() }]
+    const nextGuesses = [
+      ...userGuesses,
+      { guess: guess.toUpperCase(), id: Math.random() }
+    ]
     setUserGuesses(nextGuesses)
   }
 
   return <>
-    <Guesses userGuesses={userGuesses} />
-    <InputField addToGuesses={addToGuesses} />
+    <Guesses userGuesses={userGuesses} answer={answer} />
+    <InputField addToGuesses={addToGuesses} numOfGuesses={NUM_OF_GUESSES} />
   </>;
 }
 

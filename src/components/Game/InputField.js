@@ -1,11 +1,12 @@
 import { useState } from "react"
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function InputField({ addToGuesses }) {
+function InputField({ addToGuesses, numOfGuesses }) {
     const [inputText, setInputText] = useState('')
 
     function submitHandler(e) {
         e.preventDefault();
-        console.log({ guess: inputText.toUpperCase() })
+        // console.log({ guess: inputText.toUpperCase() })
         addToGuesses(inputText)
         setInputText('')
     }
@@ -21,6 +22,7 @@ function InputField({ addToGuesses }) {
                 maxLength={5}
                 minLength={5}
                 style={{ textTransform: 'uppercase' }}
+                disabled={numOfGuesses >= NUM_OF_GUESSES_ALLOWED}
             />
             <span>Your guess must be 5 letters long.</span>
         </form>
